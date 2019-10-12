@@ -36,7 +36,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
             start_folder = self.home_folder
 
         fname = QFileDialog.getOpenFileName(None, 'Open file',
-                                            start_folder, "AC7 Rhythm files (*.AC7)")[0]
+                                            start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")[0]
         if fname:
             new_folder = Path(fname).parents[0]
             #print("new folder: ", new_folder)
@@ -81,7 +81,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                     start_folder = self.home_folder
 
                 fname = QFileDialog.getSaveFileName(None, 'Save file {0} as...'.format(self.filename),
-                                                    start_folder, "AC7 Rhythm files (*.AC7)")
+                                                    start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")
                 if fname and fname[0]:
                     filename = fname[0]
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
