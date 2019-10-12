@@ -28,6 +28,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
         if not settings.value("Accepted", 0):
             self.about_clicked()
             settings.setValue('Accepted', 1)
+        self.pushButton.setFocus()
 
     def load_ac7_file_clicked(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -49,6 +50,8 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                     self.desiredDisplayName.setText("")
                     self.file_loaded = True
                     self.filename = Path(fname).name
+                    self.desiredDisplayName.setFocus()
+
 
                 except Exception as e:
                     msg = QMessageBox()
