@@ -1,12 +1,12 @@
 import sys
-import myrenamerdlg
+import ac7renamer.myrenamerdlg
 from PyQt5 import QtWidgets
 from pathlib import Path
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
     Ac7Ren = QtWidgets.QDialog()
-    ui = myrenamerdlg.MyRenamerDlg()
+    ui = ac7renamer.myrenamerdlg.MyRenamerDlg()
     ui.setupUi(Ac7Ren)
     home = str(Path.home())
     ui.setup_slots(home)

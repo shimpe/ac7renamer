@@ -1,4 +1,4 @@
-import ac7renamerdlg
+import ac7renamer.ac7renamerdlg
 from pathlib import Path
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtCore import QSettings
@@ -7,7 +7,7 @@ from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QMessageBox
 
-class MyRenamerDlg(ac7renamerdlg.Ui_Ac7Renamer):
+class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
     def __init__(self):
         super().__init__()
         self.home_folder = None
