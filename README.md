@@ -58,7 +58,7 @@ If that went well, you can now optionally proceed to make a standalone executabl
   - cd pyinstaller
   - /folder/where/python/is/installed/Scripts/pyinstaller ../ReStyle.py -F
 
-At the end of the process, a "dist" folder should have appeared which contains ReStyle.exe.
+At the end of the process, a "dist" folder should have appeared which contains a ReStyle executable.
 
 Building on Mac OS:
 -------------------
