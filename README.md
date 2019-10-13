@@ -1,9 +1,9 @@
-Building on windows OS
-----------------------
+Building standalone executable on windows OS
+--------------------------------------------
 - Install python 3.7.4 (or newer)
   - visit https://python.org and download and install python 3.7
 
-- Install pyqt5 and pyinstaller (change paths as needed for your system)
+- Install pyqt5 and pyinstaller (change paths as needed for your system) on a command line
   - cd c:\folder\where\python\is\installed\Scripts
   - pip3 install PyQt5
   - pip3 install PyInstaller
@@ -32,8 +32,8 @@ Building on windows OS
 
 At the end of the process, a "dist" folder should have appeared which contains ReStyle.exe.
 
-Building on Linux OS
---------------------
+Building standalone executable on Linux OS
+------------------------------------------
 - Prerequisites:
   -Install python 3.7
   - Install PyQt5 and PyInstaller (either using pip or using your distribution's package manager)
@@ -60,7 +60,7 @@ If that went well, you can now optionally proceed to make a standalone executabl
 
 At the end of the process, a "dist" folder should have appeared which contains a ReStyle executable.
 
-Building on Mac OS:
--------------------
+Building standalone executable on Mac OS:
+-----------------------------------------
 Sorry I don't have access to a Mac OS system. If you manage to build a standalone build, 
 be sure to file a pull request containing build instructions.
