@@ -32,13 +32,15 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
 
     def load_ac7_file_clicked(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
-        start_folder = "{0}".format(settings.value('recentFolder', ""))
+        start_folder = "{0};".format(settings.value('recentFolder', ""))
         if not start_folder:
             start_folder = self.home_folder
+        print("start folder: ", start_folder)
 
         fname = QFileDialog.getOpenFileName(None, 'Open file',
-                                            start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")[0]
+                                            start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")
         if fname:
+            fname = fname[0]
             new_folder = Path(fname).parents[0]
             #print("new folder: ", new_folder)
             settings.setValue('recentFolder', new_folder)
@@ -58,7 +60,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                     msg.setIcon(QMessageBox.Warning)
                     msg.setText("Unable to load the file")
                     msg.setInformativeText("There was a problem parsing {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .AC7 file".format(fname))
-                    msg.setWindowTitle("AC7 Renamer Warning")
+                    msg.setWindowTitle("ReStyle Warning")
                     msg.setStandardButtons(QMessageBox.Ok)
                     msg.setDetailedText(e.__repr__())
                     msg.setDefaultButton(QMessageBox.Ok)
@@ -72,7 +74,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                 msg.setIcon(QMessageBox.Warning)
                 msg.setText("No desired display name")
                 msg.setInformativeText("Please type a desired name before attempting to save the file.")
-                msg.setWindowTitle("AC7 Renamer Warning")
+                msg.setWindowTitle("ReStyle Warning")
                 msg.setStandardButtons(QMessageBox.Ok)
                 msg.setDefaultButton(QMessageBox.Ok)
                 msg.exec_()
@@ -85,18 +87,26 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
 
                 fname = QFileDialog.getSaveFileName(None, 'Save file {0} as...'.format(self.filename),
                                                     start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")
-                if fname and fname[0]:
-                    filename = fname[0]
+                if fname:
+                    fname = fname[0]
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
                     try:
-                        self.ac7file.write_file(filename,True,False)
+                        self.ac7file.write_file(fname,True,False)
+                        msg = QMessageBox()
+                        msg.setIcon(QMessageBox.Information)
+                        msg.setText("File saved!")
+                        msg.setWindowTitle("ReStyle Information")
+                        msg.setStandardButtons(QMessageBox.Ok)
+                        msg.setDefaultButton(QMessageBox.Ok)
+                        msg.exec_()
+                        self.pushButton.setFocus()
                     except Exception as e:
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Warning)
-                        msg.setText("Unable to load the file")
+                        msg.setText("Unable to save the file")
                         msg.setInformativeText(
                             "There was a problem saving {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .ac7 file".format(fname))
-                        msg.setWindowTitle("AC7 Renamer Warning")
+                        msg.setWindowTitle("ReStyle Warning")
                         msg.setStandardButtons(QMessageBox.Ok)
                         msg.setDetailedText(e.__repr__())
                         msg.setDefaultButton(QMessageBox.Ok)
@@ -107,7 +117,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
             msg.setIcon(QMessageBox.Warning)
             msg.setText("No file loaded")
             msg.setInformativeText("Please load an .AC7 file before attempting to save one.")
-            msg.setWindowTitle("AC7 Renamer Warning")
+            msg.setWindowTitle("ReStyle Warning")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.setDefaultButton(QMessageBox.Ok)
             msg.exec_()
