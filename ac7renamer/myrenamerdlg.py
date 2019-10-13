@@ -7,6 +7,7 @@ from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QRegExpValidator
 from PyQt5.QtWidgets import QMessageBox
 
+
 class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
     def __init__(self):
         super().__init__()
@@ -20,7 +21,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
         self.aboutButton.clicked.connect(self.about_clicked)
         self.saveButton.clicked.connect(self.save_clicked)
         self.home_folder = homefolder
-        reg_ex = QRegExp("[A-Za-z0-9 #\(\)\*\+\-,\$!\"\\\\\':;/<=>\?@\[\]\^_{}~\|]{1,12}")
+        reg_ex = QRegExp(r"[A-Za-z0-9 #\(\)\*\+\-,\$!\"\\':;/<=>\?@\[\]\^_{}~\|]{1,12}")
         input_validator = QRegExpValidator(reg_ex, self.desiredDisplayName)
         self.desiredDisplayName.setValidator(input_validator)
         self.Buttons.rejected.connect(self.reject)
@@ -35,14 +36,12 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
         start_folder = "{0};".format(settings.value('recentFolder', ""))
         if not start_folder:
             start_folder = self.home_folder
-        print("start folder: ", start_folder)
-
         fname = QFileDialog.getOpenFileName(None, 'Open file',
                                             start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")
+
         if fname and fname[0]:
             fname = fname[0]
             new_folder = Path(fname).parents[0]
-            #print("new folder: ", new_folder)
             settings.setValue('recentFolder', new_folder)
             if fname:
                 try:
@@ -53,13 +52,13 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                     self.file_loaded = True
                     self.filename = Path(fname).name
                     self.desiredDisplayName.setFocus()
-
-
                 except Exception as e:
                     msg = QMessageBox()
                     msg.setIcon(QMessageBox.Warning)
                     msg.setText("Unable to load the file")
-                    msg.setInformativeText("There was a problem parsing {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .AC7 file".format(fname))
+                    msg.setInformativeText(
+                        "There was a problem parsing {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .AC7 file".format(
+                            fname))
                     msg.setWindowTitle("ReStyle Warning")
                     msg.setStandardButtons(QMessageBox.Ok)
                     msg.setDetailedText(e.__repr__())
@@ -91,7 +90,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                     fname = fname[0]
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
                     try:
-                        self.ac7file.write_file(fname,True,False)
+                        self.ac7file.write_file(fname, True, False)
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Information)
                         msg.setText("Successfully saved {0}!".format(fname))
@@ -105,7 +104,8 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                         msg.setIcon(QMessageBox.Warning)
                         msg.setText("Unable to save the file")
                         msg.setInformativeText(
-                            "There was a problem saving {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .ac7 file".format(fname))
+                            "There was a problem saving {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .ac7 file".format(
+                                fname))
                         msg.setWindowTitle("ReStyle Warning")
                         msg.setStandardButtons(QMessageBox.Ok)
                         msg.setDetailedText(e.__repr__())
