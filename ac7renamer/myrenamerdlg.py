@@ -33,11 +33,13 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
 
     def load_ac7_file_clicked(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
-        start_folder = "{0};".format(settings.value('recentFolder', ""))
+        start_folder = "{0}".format(settings.value('recentFolder', ""))
         if not start_folder:
             start_folder = self.home_folder
         fname = QFileDialog.getOpenFileName(None, 'Open file',
-                                            start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")
+                                            start_folder,
+                                            "AC7 Rhythm files (*.AC7);;all files (*.*)",
+                                            options=QFileDialog.DontUseNativeDialog)
 
         if fname and fname[0]:
             fname = fname[0]
@@ -85,7 +87,9 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                     start_folder = self.home_folder
 
                 fname = QFileDialog.getSaveFileName(None, 'Save file {0} as...'.format(self.filename),
-                                                    start_folder, "AC7 Rhythm files (*.AC7);;all files (*.*)")
+                                                    start_folder,
+                                                    "AC7 Rhythm files (*.AC7);;all files (*.*)",
+                                                    options=QFileDialog.DontUseNativeDialog)
                 if fname and fname[0]:
                     fname = fname[0]
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
