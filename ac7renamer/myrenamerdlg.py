@@ -94,7 +94,7 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                         self.ac7file.write_file(fname,True,False)
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Information)
-                        msg.setText("File saved!")
+                        msg.setText("Successfully saved {0}!".format(fname))
                         msg.setWindowTitle("ReStyle Information")
                         msg.setStandardButtons(QMessageBox.Ok)
                         msg.setDefaultButton(QMessageBox.Ok)
