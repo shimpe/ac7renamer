@@ -95,6 +95,8 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                                                     options=QFileDialog.DontUseNativeDialog)
                 if fname and fname[0]:
                     fname = fname[0]
+                    if not fname.lower().endswith(".ac7"):
+                        fname = fname + ".AC7"
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
                     try:
                         self.ac7file.write_file(fname, True, False)
