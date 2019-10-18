@@ -20,7 +20,7 @@ class SingleFileTab(QObject):
         self.parent.pushButton.clicked.connect(self.load_ac7_file_clicked)
         self.parent.saveButton.clicked.connect(self.save_clicked)
         self.home_folder = homefolder
-        reg_ex = QRegExp(r"[A-Za-z0-9 #\(\)\*\+\-,\$!\"\\':;/<=>\?@\[\]\^_{}~\|]{1,12}")
+        reg_ex = QRegExp(r"[A-Za-z0-9 #\(\)\.\*\+\-,\$!\"\\':;/<=>\?@\[\]\^_{}~\|]{1,12}")
         input_validator = QRegExpValidator(reg_ex, self.parent.desiredDisplayName)
         self.parent.desiredDisplayName.setValidator(input_validator)
         self.parent.Buttons.rejected.connect(self.reject)
