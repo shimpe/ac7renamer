@@ -1,4 +1,4 @@
-from PyQt5.QtGui import QStandardItemModel
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 from ac7parser.Ac7CommonParameters import Ac7CommonParameters
 from ac7renamer.columns import *
 import re

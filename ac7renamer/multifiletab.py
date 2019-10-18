@@ -26,9 +26,9 @@ class MultiFileTab(QObject):
         self.parent.renameFolderContent.clicked.connect(self.rename_folder)
         self.home_folder = homefolder
         self.parent.fileListing.setModel(self.multi_file_model)
-        self.setupTableHeader()
+        self.setup_table_header()
 
-    def setupTableHeader(self):
+    def setup_table_header(self):
         self.multi_file_model.setHorizontalHeaderLabels(
             ["Current filename", "Current Display name", "Desired Display name", "New filename", "Error msg"])
         self.parent.fileListing.resizeColumnsToContents()
@@ -64,13 +64,13 @@ class MultiFileTab(QObject):
                     if binzero >= 0:
                         stylename = stylename[:binzero]
                 except Exception as e:
-                    errormsg = "Couldn't load"
+                    errormsg = "Couldn't load (because {0})".format(e.__repr__())
                 self.multi_file_model.setItem(row, COL_STYLENAME, QStandardItem(stylename))
                 self.multi_file_model.setItem(row, COL_NEWSTYLENAME, QStandardItem(""))
                 self.multi_file_model.setItem(row, COL_NEWFILENAME, QStandardItem(""))
                 self.multi_file_model.setItem(row, COL_ERROR, QStandardItem(errormsg))
             self.multi_file_model.blockSignals(False)
-            self.setupTableHeader()
+            self.setup_table_header()
             self.file_loaded = True
             self.parent.renameFolderContent.setFocus()
 
@@ -99,12 +99,11 @@ class MultiFileTab(QObject):
             settings.setValue('recentFolder', new_folder)
             rows = self.multi_file_model.rowCount()
             for r in range(rows):
-                errormsg = ""
                 old_filename = self.multi_file_model.item(r, COL_FILENAME).text()
                 desired_stylename = self.multi_file_model.item(r, COL_NEWSTYLENAME).text()
                 desired_filename = self.multi_file_model.item(r, COL_NEWFILENAME).text()
-                need_backup = False
                 if desired_stylename.strip():
+                    errormsg = ""
                     if not desired_filename.strip():
                         desired_filename = old_filename
                     full_desired_filename = os.path.join(new_folder, desired_filename)

@@ -6,12 +6,12 @@ from pathlib import Path
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    Ac7Ren = QtWidgets.QDialog()
+    ac7_renamer = QtWidgets.QDialog()
     ui = ac7renamer.myrenamerdlg.MyRenamerDlg()
-    ui.setupUi(Ac7Ren)
+    ui.setupUi(ac7_renamer)
     home = str(Path.home())
     ui.setup_slots(home)
-    Ac7Ren.show()
+    ac7_renamer.show()
     sys.exit(app.exec_())
 
 
