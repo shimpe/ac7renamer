@@ -1,4 +1,4 @@
-from PyQt5.QtCore import  QObject
+from PyQt5.QtCore import QObject
 from PyQt5.QtCore import QSettings
 from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QRegExpValidator
@@ -6,6 +6,7 @@ from pathlib import Path
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtWidgets import QMessageBox
 from ac7parser.Ac7File import Ac7File
+
 
 class SingleFileTab(QObject):
     def __init__(self, parent):
@@ -128,4 +129,3 @@ class SingleFileTab(QObject):
 
     def reject(self):
         pass
-

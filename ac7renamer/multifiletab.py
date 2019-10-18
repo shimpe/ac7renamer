@@ -10,6 +10,7 @@ from ac7parser.Ac7File import Ac7File
 from ac7renamer.multifilemodel import MultiFileModel
 from ac7renamer.columns import *
 
+
 class MultiFileTab(QObject):
     def __init__(self, parent):
         super().__init__()
@@ -43,7 +44,7 @@ class MultiFileTab(QObject):
         self.folder = start_folder
         fname = QFileDialog.getExistingDirectory(None, 'Open folder',
                                                  start_folder,
-                                                 options=QFileDialog.DontUseNativeDialog|QFileDialog.ShowDirsOnly)
+                                                 options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
         if fname:
             new_folder = fname
             settings.setValue('recentFolder', new_folder)
@@ -71,9 +72,9 @@ class MultiFileTab(QObject):
             self.multi_file_model.blockSignals(False)
             self.setupTableHeader()
             self.file_loaded = True
+            self.parent.renameFolderContent.setFocus()
 
     def rename_folder(self):
-
         if not self.file_loaded or self.multi_file_model.rowCount() < 1:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Warning)
@@ -91,7 +92,7 @@ class MultiFileTab(QObject):
             start_folder = self.home_folder
         fname = QFileDialog.getExistingDirectory(None, 'Open folder',
                                                  start_folder,
-                                                 options=QFileDialog.DontUseNativeDialog|QFileDialog.ShowDirsOnly)
+                                                 options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
         if fname:
             self.multi_file_model.blockSignals(True)
             new_folder = fname
@@ -113,7 +114,7 @@ class MultiFileTab(QObject):
                         found = False
                         while i < 1000 and not found:
                             if os.path.exists(backup_filename):
-                                backup_filename = full_desired_filename+"_backup_{0}".format(i)
+                                backup_filename = full_desired_filename + "_backup_{0}".format(i)
                                 i = i + 1
                             else:
                                 found = True

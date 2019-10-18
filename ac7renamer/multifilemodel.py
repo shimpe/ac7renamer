@@ -3,6 +3,7 @@ from ac7parser.Ac7CommonParameters import Ac7CommonParameters
 from ac7renamer.columns import *
 import re
 
+
 class MultiFileModel(QStandardItemModel):
     def __init__(self, rows, cols, parent):
         super().__init__(rows, cols, parent)
