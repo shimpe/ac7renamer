@@ -49,6 +49,9 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
                 try:
                     self.ac7file.load_file(fname)
                     stylename = self.ac7file.properties['common_parameters'].properties['stylename']
+                    binzero = stylename.find("\x00")
+                    if binzero >= 0:
+                        stylename = stylename[:binzero]
                     self.currentDisplayName.setText(stylename)
                     self.desiredDisplayName.setText("")
                     self.file_loaded = True
