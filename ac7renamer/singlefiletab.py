@@ -16,6 +16,20 @@ class SingleFileTab(QObject):
         self.file_loaded = False
         self.filename = ""
         self.home_folder = ""
+        self.no_of_el = 0
+        self.lut = ["intro",
+                    "normal",
+                    "var 1",
+                    "fill-in 1",
+                    "fill-in 2",
+                    "ending",
+                    "intro 2",
+                    "ending 2",
+                    "var 3",
+                    "var 4",
+                    "unknwn1",
+                    "unknwn2"]
+        self.ordering = []
 
     def setup_slots(self, homefolder):
         self.parent.pushButton.clicked.connect(self.load_ac7_file_clicked)
@@ -25,6 +39,19 @@ class SingleFileTab(QObject):
         input_validator = QRegExpValidator(reg_ex, self.parent.desiredDisplayName)
         self.parent.desiredDisplayName.setValidator(input_validator)
         self.parent.Buttons.rejected.connect(self.reject)
+        self.combos = [
+            self.parent.desEl1,
+            self.parent.desEl2,
+            self.parent.desEl3,
+            self.parent.desEl4,
+            self.parent.desEl5,
+            self.parent.desEl6,
+            self.parent.desEl7,
+            self.parent.desEl8,
+            self.parent.desEl9,
+            self.parent.desEl10,
+            self.parent.desEl11,
+            self.parent.desEl12]
         self.parent.pushButton.setFocus()
 
     def load_ac7_file_clicked(self):
@@ -53,6 +80,7 @@ class SingleFileTab(QObject):
                     self.file_loaded = True
                     self.filename = Path(fname).name
                     self.parent.desiredDisplayName.setFocus()
+                    self.set_number_of_elements(len(self.ac7file.properties['common_parameters'].properties['overall_parameters']['elements']))
                 except Exception as e:
                     msg = QMessageBox()
                     msg.setIcon(QMessageBox.Warning)
@@ -67,6 +95,10 @@ class SingleFileTab(QObject):
                     msg.exec_()
 
     def save_clicked(self):
+        self.ordering = []
+        for i in range(self.no_of_el):
+            self.ordering.append(self.combos[i].currentIndex())
+
         if self.file_loaded:
             txt = self.parent.desiredDisplayName.text()
             if not txt:
@@ -95,6 +127,7 @@ class SingleFileTab(QObject):
                         fname = fname + ".AC7"
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
                     try:
+                        self.ac7file.set_custom_element_ordering(self.ordering)
                         self.ac7file.write_file(fname, True, False)
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Information)
@@ -129,3 +162,16 @@ class SingleFileTab(QObject):
 
     def reject(self):
         pass
+
+    def set_number_of_elements(self, no_of_el):
+        self.no_of_el = no_of_el
+        for i, c in enumerate(self.combos):
+            c.clear()
+            if i >= no_of_el:
+                c.setEnabled(False)
+            else:
+                c.setEnabled(True)
+            for j, l in enumerate(self.lut):
+                if j < no_of_el:
+                    c.addItem(self.lut[j])
+            c.setCurrentIndex(i)

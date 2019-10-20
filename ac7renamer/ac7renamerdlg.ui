@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>852</width>
-    <height>428</height>
+    <width>1201</width>
+    <height>574</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -167,6 +167,221 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>[Optionally] Reorder elements</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Current ordering</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="firstRow">
+           <item>
+            <widget class="QComboBox" name="curEl1">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <item>
+              <property name="text">
+               <string>intro</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>normal</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>var 1</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>fill-in 1</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl5">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>fill-in 2</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl6">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>ending</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl7">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>intro 2</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl8">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>ending 2</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl9">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>var 3</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl10">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>var 4</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl11">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>unknwn1</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl12">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>unknwn2</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_4">
+           <property name="text">
+            <string>Desired ordering</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="secRow">
+           <item>
+            <widget class="QComboBox" name="desEl1"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl2"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl3"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl4"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl5"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl6"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl7"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl8"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl9"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl10"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl11"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl12"/>
+           </item>
+          </layout>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="saveButton">
@@ -189,19 +404,6 @@ p, li { white-space: pre-wrap; }
             </spacer>
            </item>
           </layout>
-         </item>
-         <item>
-          <spacer name="verticalSpacer">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
@@ -284,10 +486,35 @@ p, li { white-space: pre-wrap; }
  </widget>
  <tabstops>
   <tabstop>textBrowser</tabstop>
+  <tabstop>aboutButton</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>currentDisplayName</tabstop>
   <tabstop>desiredDisplayName</tabstop>
+  <tabstop>curEl1</tabstop>
+  <tabstop>desEl1</tabstop>
+  <tabstop>curEl2</tabstop>
+  <tabstop>desEl2</tabstop>
+  <tabstop>curEl3</tabstop>
+  <tabstop>desEl3</tabstop>
+  <tabstop>curEl4</tabstop>
+  <tabstop>desEl4</tabstop>
+  <tabstop>curEl5</tabstop>
+  <tabstop>desEl5</tabstop>
+  <tabstop>curEl6</tabstop>
+  <tabstop>desEl6</tabstop>
+  <tabstop>curEl7</tabstop>
+  <tabstop>desEl7</tabstop>
+  <tabstop>curEl8</tabstop>
+  <tabstop>desEl8</tabstop>
+  <tabstop>curEl9</tabstop>
+  <tabstop>desEl9</tabstop>
+  <tabstop>curEl10</tabstop>
+  <tabstop>desEl10</tabstop>
+  <tabstop>curEl11</tabstop>
+  <tabstop>desEl11</tabstop>
+  <tabstop>curEl12</tabstop>
+  <tabstop>desEl12</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>loadFolderContent</tabstop>
   <tabstop>fileListing</tabstop>
@@ -302,8 +529,8 @@ p, li { white-space: pre-wrap; }
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>239</x>
-     <y>282</y>
+     <x>246</x>
+     <y>420</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -318,8 +545,8 @@ p, li { white-space: pre-wrap; }
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>307</x>
-     <y>282</y>
+     <x>314</x>
+     <y>420</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
