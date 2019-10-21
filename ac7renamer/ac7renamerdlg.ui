@@ -303,7 +303,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>var 4</string>
+               <string>fill-in 3</string>
               </property>
              </item>
             </widget>
@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>fill-in 3</string>
+               <string>var 4</string>
               </property>
              </item>
             </widget>

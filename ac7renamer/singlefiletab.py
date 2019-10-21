@@ -26,8 +26,8 @@ class SingleFileTab(QObject):
                     "intro 2",
                     "ending 2",
                     "var 3",
-                    "var 4",
                     "fill-in 3",
+                    "var 4",
                     "fill-in 4"]
         self.ordering = []
 
