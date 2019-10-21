@@ -315,7 +315,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>unknwn1</string>
+               <string>fill-in 3</string>
               </property>
              </item>
             </widget>
@@ -327,7 +327,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>unknwn2</string>
+               <string>fill-in 4</string>
               </property>
              </item>
             </widget>

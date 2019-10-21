@@ -27,8 +27,8 @@ class SingleFileTab(QObject):
                     "ending 2",
                     "var 3",
                     "var 4",
-                    "unknwn1",
-                    "unknwn2"]
+                    "fill-in 3",
+                    "fill-in 4"]
         self.ordering = []
 
     def setup_slots(self, homefolder):
