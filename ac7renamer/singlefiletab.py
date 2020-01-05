@@ -30,6 +30,7 @@ class SingleFileTab(QObject):
                     "var 4",
                     "fill-in 4"]
         self.ordering = []
+        self.combos = []
 
     def setup_slots(self, homefolder):
         self.parent.pushButton.clicked.connect(self.load_ac7_file_clicked)
@@ -128,6 +129,7 @@ class SingleFileTab(QObject):
                     self.ac7file.properties['common_parameters'].properties['stylename'] = txt
                     try:
                         self.ac7file.set_custom_element_ordering(self.ordering)
+                        self.ac7file.prepare_for_save()
                         self.ac7file.write_file(fname, True, False)
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Information)
