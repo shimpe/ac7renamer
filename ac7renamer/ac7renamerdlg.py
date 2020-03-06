@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ac7renamerdlg.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.1
+# Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -277,10 +277,10 @@ class Ui_Ac7Renamer(object):
         self.textBrowser.setHtml(_translate("Ac7Renamer", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Noto Sans\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">This tool is GPLv3 charityware. Use and copy it freely,</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">but if you keep using it, please consider</span></p>\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Noto Sans\';\">making a donation to a charity of your choice.</span></p></body></html>"))
+"</style></head><body style=\" font-family:\'Noto Sans\'; font-size:12pt; font-weight:400; font-style:normal;\">\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">This tool is GPLv3 charityware. Use and copy it freely,</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">but if you keep using it, please consider</span></p>\n"
+"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">making a donation to a charity of your choice.</span></p></body></html>"))
         self.aboutButton.setText(_translate("Ac7Renamer", "About this tool"))
         self.pushButton.setText(_translate("Ac7Renamer", "Load Ac7 File"))
         self.label_2.setText(_translate("Ac7Renamer", "Current display name"))
@@ -299,8 +299,8 @@ class Ui_Ac7Renamer(object):
         self.curEl8.setItemText(0, _translate("Ac7Renamer", "ending 2"))
         self.curEl9.setItemText(0, _translate("Ac7Renamer", "var 3"))
         self.curEl10.setItemText(0, _translate("Ac7Renamer", "fill-in 3"))
-        self.curEl11.setItemText(0, _translate("Ac7Renamer", "var 4"))
-        self.curEl12.setItemText(0, _translate("Ac7Renamer", "fill-in 4"))
+        self.curEl11.setItemText(0, _translate("Ac7Renamer", "fill-in 4"))
+        self.curEl12.setItemText(0, _translate("Ac7Renamer", "var 4"))
         self.label_4.setText(_translate("Ac7Renamer", "Desired ordering"))
         self.saveButton.setText(_translate("Ac7Renamer", "Save AC7 File"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.singleFileTab), _translate("Ac7Renamer", "Single file"))
