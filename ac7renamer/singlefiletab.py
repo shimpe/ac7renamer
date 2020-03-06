@@ -17,18 +17,22 @@ class SingleFileTab(QObject):
         self.filename = ""
         self.home_folder = ""
         self.no_of_el = 0
-        self.lut = ["intro",
-                    "normal",
-                    "var 1",
-                    "fill-in 1",
-                    "fill-in 2",
-                    "ending",
-                    "intro 2",
-                    "ending 2",
-                    "var 3",
-                    "fill-in 3",
-                    "fill-in 4",
-                    "var 4"]
+        # lut is ordered as in the .ac7 file
+        # do not change the order in lut
+        # rather, change the ordering in the .ui file if needed
+        # if you do, make sure to swap both the current and corresponding destination fields
+        self.lut = ["intro (1)",
+                    "normal (1)",
+                    "var (2)",
+                    "fill-in (1)",
+                    "fill-in (2)",
+                    "ending (1)",
+                    "intro (2)",
+                    "ending (2)",
+                    "var (3)",
+                    "fill-in (3)",
+                    "fill-in (4)",
+                    "var (4)"]
         self.ordering = []
         self.combos = []
 

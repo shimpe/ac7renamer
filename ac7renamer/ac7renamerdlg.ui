@@ -195,7 +195,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>intro</string>
+               <string>intro (1)</string>
               </property>
              </item>
             </widget>
@@ -207,19 +207,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>normal</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl3">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>var 1</string>
+               <string>normal (1)</string>
               </property>
              </item>
             </widget>
@@ -231,19 +219,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>fill-in 1</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl5">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>fill-in 2</string>
+               <string>fill-in (1)</string>
               </property>
              </item>
             </widget>
@@ -255,7 +231,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>ending</string>
+               <string>ending (1)</string>
               </property>
              </item>
             </widget>
@@ -267,7 +243,31 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>intro 2</string>
+               <string>intro (2)</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>var (2)</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl5">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>fill-in (2)</string>
               </property>
              </item>
             </widget>
@@ -279,7 +279,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>ending 2</string>
+               <string>ending (2)</string>
               </property>
              </item>
             </widget>
@@ -291,7 +291,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>var 3</string>
+               <string>var (3)</string>
               </property>
              </item>
             </widget>
@@ -303,19 +303,7 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>fill-in 3</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl11">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>fill-in 4</string>
+               <string>fill-in (3)</string>
               </property>
              </item>
             </widget>
@@ -327,7 +315,19 @@ p, li { white-space: pre-wrap; }
              </property>
              <item>
               <property name="text">
-               <string>var 4</string>
+               <string>var (4)</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="curEl11">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <item>
+              <property name="text">
+               <string>fill-in (4)</string>
               </property>
              </item>
             </widget>
@@ -350,19 +350,19 @@ p, li { white-space: pre-wrap; }
             <widget class="QComboBox" name="desEl2"/>
            </item>
            <item>
-            <widget class="QComboBox" name="desEl3"/>
-           </item>
-           <item>
             <widget class="QComboBox" name="desEl4"/>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl5"/>
            </item>
            <item>
             <widget class="QComboBox" name="desEl6"/>
            </item>
            <item>
             <widget class="QComboBox" name="desEl7"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl3"/>
+           </item>
+           <item>
+            <widget class="QComboBox" name="desEl5"/>
            </item>
            <item>
             <widget class="QComboBox" name="desEl8"/>
@@ -374,10 +374,10 @@ p, li { white-space: pre-wrap; }
             <widget class="QComboBox" name="desEl10"/>
            </item>
            <item>
-            <widget class="QComboBox" name="desEl11"/>
+            <widget class="QComboBox" name="desEl12"/>
            </item>
            <item>
-            <widget class="QComboBox" name="desEl12"/>
+            <widget class="QComboBox" name="desEl11"/>
            </item>
           </layout>
          </item>
@@ -497,14 +497,8 @@ p, li { white-space: pre-wrap; }
   <tabstop>desEl2</tabstop>
   <tabstop>curEl3</tabstop>
   <tabstop>desEl3</tabstop>
-  <tabstop>curEl4</tabstop>
-  <tabstop>desEl4</tabstop>
   <tabstop>curEl5</tabstop>
   <tabstop>desEl5</tabstop>
-  <tabstop>curEl6</tabstop>
-  <tabstop>desEl6</tabstop>
-  <tabstop>curEl7</tabstop>
-  <tabstop>desEl7</tabstop>
   <tabstop>curEl8</tabstop>
   <tabstop>desEl8</tabstop>
   <tabstop>curEl9</tabstop>
@@ -513,8 +507,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>desEl10</tabstop>
   <tabstop>curEl11</tabstop>
   <tabstop>desEl11</tabstop>
-  <tabstop>curEl12</tabstop>
-  <tabstop>desEl12</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>loadFolderContent</tabstop>
   <tabstop>fileListing</tabstop>
