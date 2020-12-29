@@ -428,6 +428,27 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="selectAll">
+             <property name="text">
+              <string>Select All</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="deselectAll">
+             <property name="text">
+              <string>Deselect All</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="invertSelection">
+             <property name="text">
+              <string>Invert Selection</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_3">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -501,6 +522,12 @@ p, li { white-space: pre-wrap; }
   <tabstop>desEl1</tabstop>
   <tabstop>curEl2</tabstop>
   <tabstop>desEl2</tabstop>
+  <tabstop>curEl4</tabstop>
+  <tabstop>desEl4</tabstop>
+  <tabstop>curEl6</tabstop>
+  <tabstop>desEl6</tabstop>
+  <tabstop>curEl7</tabstop>
+  <tabstop>desEl7</tabstop>
   <tabstop>curEl3</tabstop>
   <tabstop>desEl3</tabstop>
   <tabstop>curEl5</tabstop>
@@ -511,8 +538,15 @@ p, li { white-space: pre-wrap; }
   <tabstop>desEl9</tabstop>
   <tabstop>curEl10</tabstop>
   <tabstop>desEl10</tabstop>
+  <tabstop>curEl11</tabstop>
+  <tabstop>desEl11</tabstop>
+  <tabstop>curEl12</tabstop>
+  <tabstop>desEl12</tabstop>
   <tabstop>saveButton</tabstop>
   <tabstop>loadFolderContent</tabstop>
+  <tabstop>selectAll</tabstop>
+  <tabstop>deselectAll</tabstop>
+  <tabstop>invertSelection</tabstop>
   <tabstop>fileListing</tabstop>
   <tabstop>renameFolderContent</tabstop>
  </tabstops>

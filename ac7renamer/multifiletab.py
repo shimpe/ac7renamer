@@ -1,6 +1,6 @@
 import os
 import shutil
-from PyQt5.QtCore import QObject
+from PyQt5.QtCore import QObject, Qt
 from PyQt5.QtCore import QSettings
 from PyQt5.QtGui import QStandardItem
 from PyQt5.QtWidgets import QFileDialog
@@ -19,22 +19,46 @@ class MultiFileTab(QObject):
         self.filename = ""
         self.home_folder = ""
         self.folder = ""
-        self.multi_file_model = MultiFileModel(0, 5, self)
+        self.multi_file_model = MultiFileModel(0, 6, self)
 
     def setup_slots(self, homefolder):
         self.parent.loadFolderContent.clicked.connect(self.load_folder)
         self.parent.renameFolderContent.clicked.connect(self.rename_folder)
+        self.parent.selectAll.clicked.connect(self.select_all)
+        self.parent.deselectAll.clicked.connect(self.deselect_all)
+        self.parent.invertSelection.clicked.connect(self.invert_selection)
         self.home_folder = homefolder
         self.parent.fileListing.setModel(self.multi_file_model)
         self.setup_table_header()
 
     def setup_table_header(self):
         self.multi_file_model.setHorizontalHeaderLabels(
-            ["Current filename", "Current Display name", "Desired Display name", "New filename", "Error msg"])
+            ["Process", "Current filename", "Current Display name", "Desired Display name", "New filename", "Error msg"])
         self.parent.fileListing.resizeColumnsToContents()
 
     def collect_ac7files(self, location):
         return [filename for filename in Path(location).glob('*.AC7')]
+
+    def select_all(self):
+        rowcount = self.multi_file_model.rowCount()
+        for r in range(rowcount):
+            item = self.multi_file_model.item(r, COL_PROCESS)
+            item.setCheckState(Qt.Checked)
+
+    def deselect_all(self):
+        rowcount = self.multi_file_model.rowCount()
+        for r in range(rowcount):
+            item = self.multi_file_model.item(r, COL_PROCESS)
+            item.setCheckState(Qt.Unchecked)
+
+    def invert_selection(self):
+        rowcount = self.multi_file_model.rowCount()
+        for r in range(rowcount):
+            item = self.multi_file_model.item(r, COL_PROCESS)
+            if item.checkState() == Qt.Checked:
+                item.setCheckState(Qt.Unchecked)
+            else:
+                item.setCheckState(Qt.Checked)
 
     def load_folder(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -53,6 +77,11 @@ class MultiFileTab(QObject):
             self.multi_file_model.blockSignals(True)
             self.multi_file_model.clear()
             for row, n in enumerate(basenames):
+                process_checkbox = QStandardItem(True)
+                process_checkbox.setCheckable(True)
+                process_checkbox.setCheckState(Qt.Checked)
+                process_checkbox.setText("")
+                self.multi_file_model.setItem(row, COL_PROCESS, process_checkbox)
                 self.multi_file_model.setItem(row, COL_FILENAME, QStandardItem(n))
                 stylename = ""
                 errormsg = ""
@@ -90,7 +119,7 @@ class MultiFileTab(QObject):
         start_folder = "{0}".format(settings.value('recentFolder', ""))
         if not start_folder:
             start_folder = self.home_folder
-        fname = QFileDialog.getExistingDirectory(None, 'Open folder',
+        fname = QFileDialog.getExistingDirectory(None, 'Choose output folder',
                                                  start_folder,
                                                  options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
         if fname:
@@ -100,12 +129,15 @@ class MultiFileTab(QObject):
             rows = self.multi_file_model.rowCount()
             for r in range(rows):
                 old_filename = self.multi_file_model.item(r, COL_FILENAME).text()
+                old_stylename = self.multi_file_model.item(r, COL_STYLENAME).text()
                 desired_stylename = self.multi_file_model.item(r, COL_NEWSTYLENAME).text()
                 desired_filename = self.multi_file_model.item(r, COL_NEWFILENAME).text()
-                if desired_stylename.strip():
+                if self.multi_file_model.item(r, COL_PROCESS).checkState() == Qt.Checked:
                     errormsg = ""
                     if not desired_filename.strip():
                         desired_filename = old_filename
+                    if not desired_stylename:
+                        desired_stylename = old_stylename
                     full_desired_filename = os.path.join(new_folder, desired_filename)
                     if os.path.exists(full_desired_filename):
                         backup_filename = full_desired_filename + "_bak"
