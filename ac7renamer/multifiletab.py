@@ -67,7 +67,8 @@ class MultiFileTab(QObject):
         start_folder = "{0}".format(settings.value('recentFolder', ""))
         if not start_folder:
             start_folder = self.home_folder
-        self.folder = start_folder
+        if not self.folder:
+            self.folder = start_folder
         fname = QFileDialog.getExistingDirectory(None, 'Open folder',
                                                  start_folder,
                                                  options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
@@ -161,7 +162,6 @@ class MultiFileTab(QObject):
                         ac7file.load_file(os.path.join(self.folder, old_filename))
                         ac7file.properties["common_parameters"].properties["stylename"] = desired_stylename
                         new_name = os.path.splitext(full_desired_filename)[0] + "_12.AC7"
-                        print(f"{new_name = }")
                         ac7file.write_file(new_name, True, False)
 
                         ac7file = Ac7File()
@@ -169,7 +169,6 @@ class MultiFileTab(QObject):
                         ac7file.properties["common_parameters"].properties["stylename"] = desired_stylename
                         ac7file.set_custom_element_ordering([INTRO2, VAR3, VAR4, FILL3, FILL4, END2, INTRO1, VAR1, VAR2, FILL1, FILL2, END1])
                         new_name = os.path.splitext(full_desired_filename)[0] + "_34.AC7"
-                        print(f"{new_name = }")
                         ac7file.write_file(new_name, True, False)
 
                         errormsg = "Success!"
