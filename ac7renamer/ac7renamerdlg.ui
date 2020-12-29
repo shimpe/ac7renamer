@@ -476,6 +476,13 @@ p, li { white-space: pre-wrap; }
             </widget>
            </item>
            <item>
+            <widget class="QPushButton" name="rhythmSplit">
+             <property name="text">
+              <string>4 Variation Rhythm Split</string>
+             </property>
+            </widget>
+           </item>
+           <item>
             <spacer name="horizontalSpacer_4">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
