@@ -1,8 +1,8 @@
 import ac7renamer.ac7renamerdlg
-from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QMessageBox, QSplashScreen
 from ac7renamer.singlefiletab import SingleFileTab
 from ac7renamer.multifiletab import MultiFileTab
-from PyQt5.QtCore import QSettings, Qt
+from PyQt5.QtCore import QSettings, Qt, QTimer
 from PyQt5.QtGui import QPixmap
 
 
@@ -10,7 +10,13 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
     def __init__(self):
         super().__init__()
         self.home_folder = None
+        self.splash = None
         self.tab_handlers = {'singlefile': SingleFileTab(self), 'multifile': MultiFileTab(self)}
+
+    def flash_splash(self):
+        self.splash = QSplashScreen(QPixmap(":/icons/images/restyle_logo_whitebg.png").scaledToWidth(500))
+        self.splash.show()
+        QTimer.singleShot(1500, self.splash.close)
 
     def setup_slots(self, homefolder):
         for tab in self.tab_handlers:

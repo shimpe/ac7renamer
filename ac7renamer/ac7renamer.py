@@ -12,6 +12,7 @@ def main():
     home = str(Path.home())
     ui.setup_slots(home)
     ac7_renamer.show()
+    ui.flash_splash()
     sys.exit(app.exec_())
 
 
