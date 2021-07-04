@@ -15,6 +15,9 @@ class Ui_Ac7Renamer(object):
     def setupUi(self, Ac7Renamer):
         Ac7Renamer.setObjectName("Ac7Renamer")
         Ac7Renamer.resize(1286, 642)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/images/restyle_icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        Ac7Renamer.setWindowIcon(icon)
         Ac7Renamer.setAutoFillBackground(False)
         Ac7Renamer.setStyleSheet("")
         self.verticalLayout = QtWidgets.QVBoxLayout(Ac7Renamer)
@@ -344,3 +347,4 @@ class Ui_Ac7Renamer(object):
         self.rhythmSplit.setText(_translate("Ac7Renamer", "4 Variation Rhythm Split"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.multiFileTab), _translate("Ac7Renamer", "Many files"))
         self.Buttons.setToolTip(_translate("Ac7Renamer", "Save as a new filename"))
+from . import imageresources_rc
