@@ -22,7 +22,7 @@ class SingleFileTab(QObject):
         # do not change the order in lut
         # rather, change the ordering in the .ui file if needed
         # if you do, make sure to swap both the current and corresponding destination fields
-        self.lut = ["intro (1)",
+        self.lut_in_file_order = ["intro (1)",
                     "normal (1)",
                     "var (2)",
                     "fill-in (1)",
@@ -33,9 +33,29 @@ class SingleFileTab(QObject):
                     "var (4)",
                     "fill-in (3)",
                     "fill-in (4)",
+                   "end (2)"]
+        self.lut_in_ui_order = ["intro (1)",
+                    "normal (1)",
+                    "fill-in (1)",
+                    "var (2)",
+                    "fill-in (2)",
+                    "end (1)",
+                    "var (3)",
+                    "fill-in (3)",
+                    "var (4)",
+                    "fill-in (4)",
+                    "intro (2)",
                     "end (2)"]
         self.ordering = []
-        self.combos = []
+        self.combos_in_file_order = []
+
+    def file_order_to_ui_order(self, file_order_index):
+        txt = self.lut_in_file_order[file_order_index]
+        return self.lut_in_ui_order.index(txt)
+
+    def ui_order_to_file_order(self, ui_order_index):
+        txt = self.lut_in_ui_order[ui_order_index]
+        return self.lut_in_file_order.index(txt)
 
     def setup_slots(self, homefolder):
         self.parent.pushButton.clicked.connect(self.load_ac7_file_clicked)
@@ -45,7 +65,7 @@ class SingleFileTab(QObject):
         input_validator = QRegExpValidator(reg_ex, self.parent.desiredDisplayName)
         self.parent.desiredDisplayName.setValidator(input_validator)
         self.parent.Buttons.rejected.connect(self.reject)
-        self.combos = [
+        self.combos_in_file_order = [
             self.parent.desEl1,
             self.parent.desEl2,
             self.parent.desEl3,
@@ -103,8 +123,8 @@ class SingleFileTab(QObject):
 
     def save_clicked(self):
         self.ordering = []
-        for i in range(self.no_of_el):
-            self.ordering.append(self.combos[i].currentIndex())
+        for index_in_file_order in range(self.no_of_el):
+            self.ordering.append(self.ui_order_to_file_order(self.combos_in_file_order[index_in_file_order].currentIndex()))
 
         if self.file_loaded:
             txt = self.parent.desiredDisplayName.text()
@@ -174,13 +194,14 @@ class SingleFileTab(QObject):
 
     def set_number_of_elements(self, no_of_el):
         self.no_of_el = no_of_el
-        for i, c in enumerate(self.combos):
+        for index_in_file_order, c in enumerate(self.combos_in_file_order):
             c.clear()
-            if i >= no_of_el:
+            if index_in_file_order >= no_of_el:
                 c.setEnabled(False)
             else:
                 c.setEnabled(True)
-            for j, l in enumerate(self.lut):
-                if j < no_of_el:
-                    c.addItem(self.lut[j])
-            c.setCurrentIndex(i)
+            for index_in_ui_order, l in enumerate(self.lut_in_ui_order):
+                inner_index_in_file_order = self.ui_order_to_file_order(index_in_ui_order)
+                if inner_index_in_file_order < no_of_el:
+                    c.addItem(l)
+            c.setCurrentIndex(self.file_order_to_ui_order(index_in_file_order))
