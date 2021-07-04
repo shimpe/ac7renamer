@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMessageBox
 from ac7renamer.singlefiletab import SingleFileTab
 from ac7renamer.multifiletab import MultiFileTab
 from PyQt5.QtCore import QSettings
+from PyQt5.QtGui import QPixmap
 
 
 class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
@@ -38,4 +39,5 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
         msg.setWindowTitle("About")
         msg.setStandardButtons(QMessageBox.Ok)
         msg.setDefaultButton(QMessageBox.Ok)
+        msg.setIconPixmap(QPixmap(":/icons/images/restyle_logo.png").scaledToWidth(300))
         msg.exec_()
