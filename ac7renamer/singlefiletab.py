@@ -1,6 +1,7 @@
 from PyQt5.QtCore import QObject
 from PyQt5.QtCore import QSettings
 from PyQt5.QtCore import QRegExp
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QRegExpValidator
 from pathlib import Path
 from PyQt5.QtWidgets import QFileDialog
@@ -90,8 +91,9 @@ class SingleFileTab(QObject):
                     msg = QMessageBox()
                     msg.setIcon(QMessageBox.Warning)
                     msg.setText("Unable to load the file")
+                    msg.setTextFormat(Qt.RichText)
                     msg.setInformativeText(
-                        "There was a problem parsing {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .AC7 file".format(
+                        "There was a problem parsing {0}. Please log a bug in <href a='https://github.com/shimpe/ac7renamer/issues'>the bug database</href> and attach your .AC7 file".format(
                             fname))
                     msg.setWindowTitle("ReStyle Warning")
                     msg.setStandardButtons(QMessageBox.Ok)
@@ -147,8 +149,9 @@ class SingleFileTab(QObject):
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Warning)
                         msg.setText("Unable to save the file")
+                        msg.setTextFormat(Qt.RichText)
                         msg.setInformativeText(
-                            "There was a problem saving {0}. Please log a bug on https://github.com/shimpe/ac7renamer/issues and attach your .ac7 file".format(
+                            "There was a problem saving {0}. Please log a bug in <href a='https://github.com/shimpe/ac7renamer/issues'>the bug database</href> and attach your .ac7 file".format(
                                 fname))
                         msg.setWindowTitle("ReStyle Warning")
                         msg.setStandardButtons(QMessageBox.Ok)
