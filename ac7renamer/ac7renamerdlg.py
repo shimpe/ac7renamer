@@ -28,7 +28,7 @@ class Ui_Ac7Renamer(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
         self.textBrowser.setSizePolicy(sizePolicy)
-        self.textBrowser.setMinimumSize(QtCore.QSize(0, 70))
+        self.textBrowser.setMinimumSize(QtCore.QSize(0, 75))
         self.textBrowser.setMaximumSize(QtCore.QSize(16777215, 70))
         font = QtGui.QFont()
         font.setBold(False)
