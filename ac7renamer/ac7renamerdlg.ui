@@ -13,10 +13,6 @@
   <property name="windowTitle">
    <string>Restyles piles of files!</string>
   </property>
-  <property name="windowIcon">
-   <iconset resource="imageresources.qrc">
-    <normaloff>:/icons/images/restyle_icon.png</normaloff>:/icons/images/restyle_icon.png</iconset>
-  </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
@@ -613,9 +609,6 @@ p, li { white-space: pre-wrap; }
   <tabstop>renameFolderContent</tabstop>
   <tabstop>rhythmSplit</tabstop>
  </tabstops>
- <resources>
-  <include location="imageresources.qrc"/>
- </resources>
  <connections>
   <connection>
    <sender>Buttons</sender>

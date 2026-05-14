@@ -1,7 +1,0 @@
-<RCC>
-  <qresource prefix="icons">
-    <file>images/restyle_logo_whitebg.png</file>
-    <file>images/restyle_icon.png</file>
-    <file>images/restyle_logo.png</file>
-  </qresource>
-</RCC>

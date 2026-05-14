@@ -4,7 +4,7 @@ from PySide6 import QtWidgets
 from pathlib import Path
 
 
-def main():
+def main() -> None:
     app = QtWidgets.QApplication(sys.argv)
     ac7_renamer = QtWidgets.QDialog()
     ui = ac7renamer.myrenamerdlg.MyRenamerDlg()

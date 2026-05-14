@@ -14,7 +14,7 @@ from ac7parser.Ac7Constants import INTRO1, VAR1, VAR2, FILL1, FILL2, END1, INTRO
 
 class MultiFileTab(QObject):
     def __init__(self, parent):
-        # Store as self.dlg, not self.parent — assigning self.parent would
+        # Store as self.dlg, not self.parent â€” assigning self.parent would
         # shadow QObject.parent() and break PySide6 signal delivery.
         super().__init__()
         self.dlg = parent
@@ -47,22 +47,22 @@ class MultiFileTab(QObject):
         rowcount = self.multi_file_model.rowCount()
         for r in range(rowcount):
             item = self.multi_file_model.item(r, COL_PROCESS)
-            item.setCheckState(Qt.Checked)
+            item.setCheckState(Qt.CheckState.Checked)
 
     def deselect_all(self):
         rowcount = self.multi_file_model.rowCount()
         for r in range(rowcount):
             item = self.multi_file_model.item(r, COL_PROCESS)
-            item.setCheckState(Qt.Unchecked)
+            item.setCheckState(Qt.CheckState.Unchecked)
 
     def invert_selection(self):
         rowcount = self.multi_file_model.rowCount()
         for r in range(rowcount):
             item = self.multi_file_model.item(r, COL_PROCESS)
-            if item.checkState() == Qt.Checked:
-                item.setCheckState(Qt.Unchecked)
+            if item.checkState() == Qt.CheckState.Checked:
+                item.setCheckState(Qt.CheckState.Unchecked)
             else:
-                item.setCheckState(Qt.Checked)
+                item.setCheckState(Qt.CheckState.Checked)
 
     def load_folder(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -73,7 +73,7 @@ class MultiFileTab(QObject):
             self.folder = start_folder
         fname = QFileDialog.getExistingDirectory(None, 'Open folder',
                                                  start_folder,
-                                                 options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
+                                                 options=QFileDialog.Option.DontUseNativeDialog | QFileDialog.Option.ShowDirsOnly)
         if fname:
             new_folder = fname
             self.folder = new_folder
@@ -85,7 +85,7 @@ class MultiFileTab(QObject):
             for row, n in enumerate(basenames):
                 process_checkbox = QStandardItem(True)
                 process_checkbox.setCheckable(True)
-                process_checkbox.setCheckState(Qt.Checked)
+                process_checkbox.setCheckState(Qt.CheckState.Checked)
                 process_checkbox.setText("")
                 self.multi_file_model.setItem(row, COL_PROCESS, process_checkbox)
                 self.multi_file_model.setItem(row, COL_FILENAME, QStandardItem(n))
@@ -112,12 +112,12 @@ class MultiFileTab(QObject):
     def rhythm_split(self):
         if not self.file_loaded or self.multi_file_model.rowCount() < 1:
             msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
+            msg.setIcon(QMessageBox.Icon.Warning)
             msg.setText("No files loaded")
             msg.setInformativeText("Please load a folder with .AC7 files before attempting to save.")
             msg.setWindowTitle("ReStyle Warning")
-            msg.setStandardButtons(QMessageBox.Ok)
-            msg.setDefaultButton(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            msg.setDefaultButton(QMessageBox.StandardButton.Ok)
             msg.exec()
             return
 
@@ -127,7 +127,7 @@ class MultiFileTab(QObject):
             start_folder = self.home_folder
         fname = QFileDialog.getExistingDirectory(None, 'Choose output folder',
                                                  start_folder,
-                                                 options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
+                                                 options=QFileDialog.Option.DontUseNativeDialog | QFileDialog.Option.ShowDirsOnly)
         if fname:
             self.multi_file_model.blockSignals(True)
             new_folder = fname
@@ -138,7 +138,7 @@ class MultiFileTab(QObject):
                 old_stylename = self.multi_file_model.item(r, COL_STYLENAME).text()
                 desired_stylename = self.multi_file_model.item(r, COL_NEWSTYLENAME).text()
                 desired_filename = self.multi_file_model.item(r, COL_NEWFILENAME).text()
-                if self.multi_file_model.item(r, COL_PROCESS).checkState() == Qt.Checked:
+                if self.multi_file_model.item(r, COL_PROCESS).checkState() == Qt.CheckState.Checked:
                     errormsg = ""
                     if not desired_filename.strip():
                         desired_filename = old_filename
@@ -182,12 +182,12 @@ class MultiFileTab(QObject):
     def rename_folder(self):
         if not self.file_loaded or self.multi_file_model.rowCount() < 1:
             msg = QMessageBox()
-            msg.setIcon(QMessageBox.Warning)
+            msg.setIcon(QMessageBox.Icon.Warning)
             msg.setText("No files loaded")
             msg.setInformativeText("Please load a folder with .AC7 files before attempting to save.")
             msg.setWindowTitle("ReStyle Warning")
-            msg.setStandardButtons(QMessageBox.Ok)
-            msg.setDefaultButton(QMessageBox.Ok)
+            msg.setStandardButtons(QMessageBox.StandardButton.Ok)
+            msg.setDefaultButton(QMessageBox.StandardButton.Ok)
             msg.exec()
             return
 
@@ -197,7 +197,7 @@ class MultiFileTab(QObject):
             start_folder = self.home_folder
         fname = QFileDialog.getExistingDirectory(None, 'Choose output folder',
                                                  start_folder,
-                                                 options=QFileDialog.DontUseNativeDialog | QFileDialog.ShowDirsOnly)
+                                                 options=QFileDialog.Option.DontUseNativeDialog | QFileDialog.Option.ShowDirsOnly)
         if fname:
             self.multi_file_model.blockSignals(True)
             new_folder = fname
@@ -208,7 +208,7 @@ class MultiFileTab(QObject):
                 old_stylename = self.multi_file_model.item(r, COL_STYLENAME).text()
                 desired_stylename = self.multi_file_model.item(r, COL_NEWSTYLENAME).text()
                 desired_filename = self.multi_file_model.item(r, COL_NEWFILENAME).text()
-                if self.multi_file_model.item(r, COL_PROCESS).checkState() == Qt.Checked:
+                if self.multi_file_model.item(r, COL_PROCESS).checkState() == Qt.CheckState.Checked:
                     errormsg = ""
                     if not desired_filename.strip():
                         desired_filename = old_filename

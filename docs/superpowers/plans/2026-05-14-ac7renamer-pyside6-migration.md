@@ -558,6 +558,11 @@ packages = ["ac7renamer"]
 
 [tool.hatch.build]
 include = ["ac7renamer/images/*.png", "ac7renamer/*.ui"]
+
+[tool.hatch.metadata]
+# Required so the VCS dep `ac7parser @ git+https://...` is accepted by
+# hatchling's metadata builder (it rejects direct references by default).
+allow-direct-references = true
 ```
 
 - [ ] **Step 2: Validate the TOML parses**

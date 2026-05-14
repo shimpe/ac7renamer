@@ -1,66 +1,91 @@
-Building standalone executable on windows OS
---------------------------------------------
-- Install python 3.7.4 (or newer)
-  - visit https://python.org and download and install python 3.7
+# ac7renamer
 
-- Install pyside6 and pyinstaller (change paths as needed for your system) on a command line
-  - cd c:\folder\where\python\is\installed\Scripts
-  - pip3 install PySide6
-  - pip3 install PyInstaller
+GPLv3 charityware tool for renaming Casio AC7 rhythm files and editing their
+display names. Built with PySide6.
 
-- Install git
-  - visit https://git-scm.com/download/win
+## Development setup (Windows / Linux)
 
-- Download ac7parser
-  - git clone https://github.com/shimpe/ac7parser
+Requires Python 3.10+ and git on PATH.
 
-- Install ac7parser (be sure to invoke python v3)
-  - cd ac7parser
-  - python setup.py install
+    python -m venv .venv
+    # Windows:
+    .venv\Scripts\activate
+    # Linux:
+    source .venv/bin/activate
 
-- Clone ac7renamer
-  - git clone https://github.com/shimpe/ac7renamer
+    pip install -e ".[dev,build]"
 
-- Try if ac7renamer runs correctly from python source code:
-  - cd ac7renamer
-  - python ReStyle.py
+That installs ac7renamer, ac7parser (pulled from GitHub at the pinned commit),
+PySide6, pytest, and pyinstaller into the venv.
 
-- If that went well, you can now optionally proceed to make a standalone executable:
-  - mkdir pyinstaller
-  - cd pyinstaller
-  - c:\folder\where\python\is\installed\Scripts\pyinstaller ..\ReStyle.py -F
+Run the app:
 
-At the end of the process, a "dist" folder should have appeared which contains ReStyle.exe.
+    python ReStyle.py
 
-Building standalone executable on Linux OS
-------------------------------------------
-- Prerequisites:
-  -Install python 3.7
-  - Install PySide6 and PyInstaller (either using pip or using your distribution's package manager)
-  - Install git
+Run the tests:
 
-- Download ac7parser
-  - git clone https://github.com/shimpe/ac7parser
+    pytest
 
-- Install ac7parser (be sure to invoke python v3)
-  - cd ac7parser
-  - python setup.py install
+## Working on ac7parser alongside ac7renamer
 
-- Clone ac7renamer
-  - git clone https://github.com/shimpe/ac7renamer
+If you want to step into and edit ac7parser source while debugging ac7renamer,
+shadow the installed copy with an editable install pointing at your local clone:
 
-- Try if ac7renamer runs correctly from python source code:
-  - cd ac7renamer
-  - python ReStyle.py
+    git clone https://github.com/shimpe/ac7parser.git ../ac7parser
+    pip install -e ../ac7parser
 
-If that went well, you can now optionally proceed to make a standalone executable:
-  - mkdir pyinstaller
-  - cd pyinstaller
-  - /folder/where/python/is/installed/Scripts/pyinstaller ../ReStyle.py -F
+After that, edits to `../ac7parser/ac7parser/*.py` take effect immediately
+(no reinstall) and the debugger steps into your working tree, not into
+`site-packages`.
 
-At the end of the process, a "dist" folder should have appeared which contains a ReStyle executable.
+## Reproducing a known-good environment
 
-Building standalone executable on Mac OS:
------------------------------------------
-Sorry I don't have access to a Mac OS system. If you manage to build a standalone build, 
-be sure to file a pull request containing build instructions.
+The exact tested versions are pinned in `requirements.lock` (generated from
+`pyproject.toml` with pip-tools). To install those specific versions:
+
+    pip install -r requirements.lock
+
+Regenerate the lock after changing dependencies in `pyproject.toml`:
+
+    pip install pip-tools
+    python -m piptools compile pyproject.toml -o requirements.lock \
+        --extra dev --extra build --no-header --resolver=backtracking
+
+## Regenerating the UI
+
+After editing `ac7renamer/ac7renamerdlg.ui` (e.g. in Qt Designer):
+
+    python build.py
+
+That runs `pyside6-uic` to rewrite `ac7renamer/ac7renamerdlg.py`. The script
+works on Windows and Linux out of any venv that has PySide6 installed.
+
+## Building a standalone executable with PyInstaller
+
+### Windows
+
+    mkdir pyinstaller
+    cd pyinstaller
+    pyinstaller ..\ReStyle.py -F ^
+      --add-data "..\ac7renamer\images;ac7renamer\images" ^
+      --add-data "..\ac7renamer\ac7renamerdlg.ui;ac7renamer"
+
+The standalone `ReStyle.exe` ends up in `pyinstaller\dist\`.
+
+### Linux
+
+    mkdir pyinstaller
+    cd pyinstaller
+    pyinstaller ../ReStyle.py -F \
+      --add-data "../ac7renamer/images:ac7renamer/images" \
+      --add-data "../ac7renamer/ac7renamerdlg.ui:ac7renamer"
+
+The standalone `ReStyle` binary ends up in `pyinstaller/dist/`.
+
+PySide6 PyInstaller hooks are installed automatically via
+`pyinstaller-hooks-contrib` (a transitive dependency of pyinstaller); no
+manual hook is needed.
+
+## macOS
+
+No build instructions yet. Patches with macOS build steps welcome.

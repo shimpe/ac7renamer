@@ -20,16 +20,11 @@ from PySide6.QtWidgets import (QAbstractButton, QApplication, QComboBox, QDialog
     QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
     QTabWidget, QTableView, QTextBrowser, QVBoxLayout,
     QWidget)
-from . import imageresources_rc
-
 class Ui_Ac7Renamer(object):
     def setupUi(self, Ac7Renamer):
         if not Ac7Renamer.objectName():
             Ac7Renamer.setObjectName(u"Ac7Renamer")
         Ac7Renamer.resize(1286, 642)
-        icon = QIcon()
-        icon.addFile(u":/icons/images/restyle_icon.png", QSize(), QIcon.Mode.Normal, QIcon.State.Off)
-        Ac7Renamer.setWindowIcon(icon)
         Ac7Renamer.setAutoFillBackground(False)
         Ac7Renamer.setStyleSheet(u"")
         self.verticalLayout = QVBoxLayout(Ac7Renamer)
