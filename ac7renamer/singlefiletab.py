@@ -1,3 +1,4 @@
+from functools import partial
 from PyQt5.QtCore import QObject
 from PyQt5.QtCore import QSettings
 from PyQt5.QtCore import QRegExp
@@ -7,6 +8,7 @@ from pathlib import Path
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtWidgets import QMessageBox
 from ac7parser.Ac7File import Ac7File
+from .piano_roll import pianorollwidget
 
 
 class SingleFileTab(QObject):
@@ -79,6 +81,19 @@ class SingleFileTab(QObject):
             self.parent.desEl11,
             self.parent.desEl12]
         self.parent.pushButton.setFocus()
+        self.edit_buttons = [self.parent.editEl1, self.parent.editEl2, self.parent.editEl3, self.parent.editEl4,
+                             self.parent.editEl5, self.parent.editEl6, self.parent.editEl7, self.parent.editEl8,
+                             self.parent.editEl9, self.parent.editEl10, self.parent.editEl11, self.parent.editEl12]
+        for idx, button in enumerate(self.edit_buttons):
+            button.clicked.connect(partial(self.edit_track, track_id=idx))
+            button.setEnabled(False)
+
+    def edit_track(self, track_id=0):
+        print(f"Editing track with {track_id= }")
+        piano_roll = pianorollwidget()
+        # drawNote notenum start end vel
+
+        piano_roll.show()
 
     def load_ac7_file_clicked(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -198,8 +213,10 @@ class SingleFileTab(QObject):
             c.clear()
             if index_in_file_order >= no_of_el:
                 c.setEnabled(False)
+                self.edit_buttons[index_in_file_order].setEnabled(False)
             else:
                 c.setEnabled(True)
+                self.edit_buttons[index_in_file_order].setEnabled(True)
             for index_in_ui_order, l in enumerate(self.lut_in_ui_order):
                 inner_index_in_file_order = self.ui_order_to_file_order(index_in_ui_order)
                 if inner_index_in_file_order < no_of_el:

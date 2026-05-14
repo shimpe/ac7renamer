@@ -23,49 +23,66 @@
   <property name="styleSheet">
    <string notr="true"/>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <widget class="QTextBrowser" name="textBrowser">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>75</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>16777215</width>
-       <height>70</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <weight>50</weight>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">background-color:rgb(127,227,255)</string>
-     </property>
-     <property name="html">
-      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QTextBrowser" name="textBrowser">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>75</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>16777215</width>
+         <height>70</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color:rgb(127,227,255)</string>
+       </property>
+       <property name="html">
+        <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Noto Sans'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;This tool is GPLv3 charityware. Use and copy it freely,&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;but if you keep using it, please consider&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;making a donation to a charity of your choice.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-    </widget>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="horizontalLayout_8">
+     <item>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
      <item>
       <widget class="QPushButton" name="aboutButton">
        <property name="text">
@@ -89,493 +106,647 @@ p, li { white-space: pre-wrap; }
     </layout>
    </item>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QTabWidget" name="tabWidget">
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <widget class="QWidget" name="singleFileTab">
-        <attribute name="title">
-         <string>Single file</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_3">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="singleFileTab">
+      <attribute name="title">
+       <string>Single file</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
-            <widget class="QPushButton" name="pushButton">
-             <property name="text">
-              <string>Load Ac7 File</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_2">
-           <property name="styleSheet">
-            <string notr="true"/>
-           </property>
+          <widget class="QPushButton" name="pushButton">
            <property name="text">
-            <string>Current display name</string>
-           </property>
-           <property name="buddy">
-            <cstring>currentDisplayName</cstring>
+            <string>Load Ac7 File</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="currentDisplayName">
-           <property name="readOnly">
-            <bool>true</bool>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="placeholderText">
-            <string>(will be loaded from file)</string>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
            </property>
-          </widget>
+          </spacer>
          </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+         <property name="text">
+          <string>Current display name</string>
+         </property>
+         <property name="buddy">
+          <cstring>currentDisplayName</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="currentDisplayName">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="placeholderText">
+          <string>(will be loaded from file)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>Desired display name (max 12 chars)</string>
+         </property>
+         <property name="buddy">
+          <cstring>desiredDisplayName</cstring>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="desiredDisplayName">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="placeholderText">
+          <string>(type here)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>[Optionally] Reorder elements</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Current ordering</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="firstRow">
          <item>
-          <widget class="QLabel" name="label">
-           <property name="text">
-            <string>Desired display name (max 12 chars)</string>
-           </property>
-           <property name="buddy">
-            <cstring>desiredDisplayName</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="desiredDisplayName">
-           <property name="text">
-            <string/>
-           </property>
-           <property name="readOnly">
+          <widget class="QComboBox" name="curEl1">
+           <property name="enabled">
             <bool>false</bool>
            </property>
-           <property name="placeholderText">
-            <string>(type here)</string>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+           </property>
+           <item>
+            <property name="text">
+             <string>intro (1)</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_5">
-           <property name="text">
-            <string>[Optionally] Reorder elements</string>
+          <widget class="QComboBox" name="curEl2">
+           <property name="enabled">
+            <bool>false</bool>
            </property>
+           <item>
+            <property name="text">
+             <string>normal (1)</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="label_3">
-           <property name="text">
-            <string>Current ordering</string>
+          <widget class="QComboBox" name="curEl4">
+           <property name="enabled">
+            <bool>false</bool>
            </property>
+           <item>
+            <property name="text">
+             <string>fill-in (1)</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="firstRow">
-           <item>
-            <widget class="QComboBox" name="curEl1">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-             </property>
-             <item>
-              <property name="text">
-               <string>intro (1)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl2">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>normal (1)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl4">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>fill-in (1)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl3">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>var (2)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl5">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>fill-in (2)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl6">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>end (1)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl8">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="editable">
-              <bool>false</bool>
-             </property>
-             <property name="currentText">
-              <string>var (3)</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>var (3)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl10">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>fill-in (3)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl9">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>var (4)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl11">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>fill-in (4)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl7">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>intro (2)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="curEl12">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <item>
-              <property name="text">
-               <string>end (2)</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_4">
-           <property name="text">
-            <string>Desired ordering</string>
+          <widget class="QComboBox" name="curEl3">
+           <property name="enabled">
+            <bool>false</bool>
            </property>
+           <item>
+            <property name="text">
+             <string>var (2)</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="secRow">
+          <widget class="QComboBox" name="curEl5">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <item>
-            <widget class="QComboBox" name="desEl1">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
+            <property name="text">
+             <string>fill-in (2)</string>
+            </property>
            </item>
-           <item>
-            <widget class="QComboBox" name="desEl2">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl4">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl3">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl5">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl6">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl8">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl10">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl9">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl11">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl7">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QComboBox" name="desEl12">
-             <property name="sizeAdjustPolicy">
-              <enum>QComboBox::AdjustToContents</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
+          </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <widget class="QComboBox" name="curEl6">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <item>
-            <widget class="QPushButton" name="saveButton">
-             <property name="text">
-              <string>Save AC7 File</string>
-             </property>
-            </widget>
+            <property name="text">
+             <string>end (1)</string>
+            </property>
            </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="curEl8">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <property name="currentText">
+            <string>var (3)</string>
+           </property>
            <item>
-            <spacer name="horizontalSpacer_2">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+            <property name="text">
+             <string>var (3)</string>
+            </property>
            </item>
-          </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="curEl10">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>fill-in (3)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="curEl9">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>var (4)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="curEl11">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>fill-in (4)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="curEl7">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>intro (2)</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="curEl12">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>end (2)</string>
+            </property>
+           </item>
+          </widget>
          </item>
         </layout>
-       </widget>
-       <widget class="QWidget" name="multiFileTab">
-        <attribute name="title">
-         <string>Many files</string>
-        </attribute>
-        <layout class="QVBoxLayout" name="verticalLayout_4">
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3">
-           <item>
-            <widget class="QPushButton" name="loadFolderContent">
-             <property name="text">
-              <string>Load folder</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="selectAll">
-             <property name="text">
-              <string>Select All</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="deselectAll">
-             <property name="text">
-              <string>Deselect All</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="invertSelection">
-             <property name="text">
-              <string>Invert Selection</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_3">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
+          <widget class="QPushButton" name="editEl1">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
          </item>
          <item>
-          <widget class="QTableView" name="fileListing"/>
+          <widget class="QPushButton" name="editEl2">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_4">
-           <item>
-            <widget class="QPushButton" name="renameFolderContent">
-             <property name="text">
-              <string>Rename!</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="rhythmSplit">
-             <property name="text">
-              <string>4 Variation Rhythm Split</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_4">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
+          <widget class="QPushButton" name="editEl4">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl5">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl6">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl8">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl10">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl9">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl11">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl7">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="editEl12">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>edit</string>
+           </property>
+          </widget>
          </item>
         </layout>
-       </widget>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDialogButtonBox" name="Buttons">
-       <property name="toolTip">
-        <string>Save as a new filename</string>
-       </property>
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Close</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Desired ordering</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="secRow">
+         <item>
+          <widget class="QComboBox" name="desEl1">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl2">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl4">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl3">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl5">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl6">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl8">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl10">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl9">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContentsOnFirstShow</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl11">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl7">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="desEl12">
+           <property name="sizeAdjustPolicy">
+            <enum>QComboBox::AdjustToContents</enum>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QPushButton" name="saveButton">
+           <property name="text">
+            <string>Save AC7 File</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="multiFileTab">
+      <attribute name="title">
+       <string>Many files</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QPushButton" name="loadFolderContent">
+           <property name="text">
+            <string>Load folder</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="selectAll">
+           <property name="text">
+            <string>Select All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="deselectAll">
+           <property name="text">
+            <string>Deselect All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="invertSelection">
+           <property name="text">
+            <string>Invert Selection</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QTableView" name="fileListing"/>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_4">
+         <item>
+          <widget class="QPushButton" name="renameFolderContent">
+           <property name="text">
+            <string>Rename!</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="rhythmSplit">
+           <property name="text">
+            <string>4 Variation Rhythm Split</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="Buttons">
+     <property name="toolTip">
+      <string>Save as a new filename</string>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Close</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
  <tabstops>
-  <tabstop>textBrowser</tabstop>
-  <tabstop>aboutButton</tabstop>
   <tabstop>tabWidget</tabstop>
   <tabstop>pushButton</tabstop>
   <tabstop>currentDisplayName</tabstop>
@@ -604,14 +775,26 @@ p, li { white-space: pre-wrap; }
   <tabstop>desEl7</tabstop>
   <tabstop>curEl12</tabstop>
   <tabstop>desEl12</tabstop>
+  <tabstop>editEl1</tabstop>
+  <tabstop>editEl2</tabstop>
+  <tabstop>editEl4</tabstop>
+  <tabstop>editEl3</tabstop>
+  <tabstop>editEl5</tabstop>
+  <tabstop>editEl6</tabstop>
+  <tabstop>editEl8</tabstop>
+  <tabstop>editEl10</tabstop>
+  <tabstop>editEl9</tabstop>
+  <tabstop>editEl11</tabstop>
+  <tabstop>editEl7</tabstop>
+  <tabstop>editEl12</tabstop>
   <tabstop>saveButton</tabstop>
-  <tabstop>loadFolderContent</tabstop>
-  <tabstop>selectAll</tabstop>
-  <tabstop>deselectAll</tabstop>
-  <tabstop>invertSelection</tabstop>
   <tabstop>fileListing</tabstop>
   <tabstop>renameFolderContent</tabstop>
   <tabstop>rhythmSplit</tabstop>
+  <tabstop>invertSelection</tabstop>
+  <tabstop>loadFolderContent</tabstop>
+  <tabstop>selectAll</tabstop>
+  <tabstop>deselectAll</tabstop>
  </tabstops>
  <resources>
   <include location="imageresources.qrc"/>
