@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ac7renamer"
-version = "0.1.0"
+version = "0.2.0"
 description = "Change display name of AC7 files."
 authors = [{ name = "shiihs" }]
 license = { text = "GPL-3.0-or-later" }
