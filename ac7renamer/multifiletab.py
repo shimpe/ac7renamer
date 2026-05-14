@@ -14,7 +14,7 @@ from ac7parser.Ac7Constants import INTRO1, VAR1, VAR2, FILL1, FILL2, END1, INTRO
 
 class MultiFileTab(QObject):
     def __init__(self, parent):
-        # Store as self.dlg, not self.parent â€” assigning self.parent would
+        # Store as self.dlg, not self.parent -- assigning self.parent would
         # shadow QObject.parent() and break PySide6 signal delivery.
         super().__init__()
         self.dlg = parent
