@@ -1,10 +1,10 @@
 import os
 import shutil
-from PyQt5.QtCore import QObject, Qt
-from PyQt5.QtCore import QSettings
-from PyQt5.QtGui import QStandardItem
-from PyQt5.QtWidgets import QFileDialog
-from PyQt5.QtWidgets import QMessageBox
+from PySide6.QtCore import QObject, Qt
+from PySide6.QtCore import QSettings
+from PySide6.QtGui import QStandardItem
+from PySide6.QtWidgets import QFileDialog
+from PySide6.QtWidgets import QMessageBox
 from pathlib import Path
 from ac7parser.Ac7File import Ac7File
 from ac7renamer.multifilemodel import MultiFileModel
@@ -14,8 +14,10 @@ from ac7parser.Ac7Constants import INTRO1, VAR1, VAR2, FILL1, FILL2, END1, INTRO
 
 class MultiFileTab(QObject):
     def __init__(self, parent):
+        # Store as self.dlg, not self.parent — assigning self.parent would
+        # shadow QObject.parent() and break PySide6 signal delivery.
         super().__init__()
-        self.parent = parent
+        self.dlg = parent
         self.file_loaded = False
         self.filename = ""
         self.home_folder = ""
@@ -23,20 +25,20 @@ class MultiFileTab(QObject):
         self.multi_file_model = MultiFileModel(0, 6, self)
 
     def setup_slots(self, homefolder):
-        self.parent.loadFolderContent.clicked.connect(self.load_folder)
-        self.parent.renameFolderContent.clicked.connect(self.rename_folder)
-        self.parent.selectAll.clicked.connect(self.select_all)
-        self.parent.deselectAll.clicked.connect(self.deselect_all)
-        self.parent.invertSelection.clicked.connect(self.invert_selection)
-        self.parent.rhythmSplit.clicked.connect(self.rhythm_split)
+        self.dlg.loadFolderContent.clicked.connect(self.load_folder)
+        self.dlg.renameFolderContent.clicked.connect(self.rename_folder)
+        self.dlg.selectAll.clicked.connect(self.select_all)
+        self.dlg.deselectAll.clicked.connect(self.deselect_all)
+        self.dlg.invertSelection.clicked.connect(self.invert_selection)
+        self.dlg.rhythmSplit.clicked.connect(self.rhythm_split)
         self.home_folder = homefolder
-        self.parent.fileListing.setModel(self.multi_file_model)
+        self.dlg.fileListing.setModel(self.multi_file_model)
         self.setup_table_header()
 
     def setup_table_header(self):
         self.multi_file_model.setHorizontalHeaderLabels(
             ["Process", "Current filename", "Current Display name", "Desired Display name", "New filename", "Error msg"])
-        self.parent.fileListing.resizeColumnsToContents()
+        self.dlg.fileListing.resizeColumnsToContents()
 
     def collect_ac7files(self, location):
         return [filename for filename in Path(location).glob('*.AC7')]
@@ -105,7 +107,7 @@ class MultiFileTab(QObject):
             self.multi_file_model.blockSignals(False)
             self.setup_table_header()
             self.file_loaded = True
-            self.parent.renameFolderContent.setFocus()
+            self.dlg.renameFolderContent.setFocus()
 
     def rhythm_split(self):
         if not self.file_loaded or self.multi_file_model.rowCount() < 1:
@@ -116,7 +118,7 @@ class MultiFileTab(QObject):
             msg.setWindowTitle("ReStyle Warning")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.setDefaultButton(QMessageBox.Ok)
-            msg.exec_()
+            msg.exec()
             return
 
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -186,7 +188,7 @@ class MultiFileTab(QObject):
             msg.setWindowTitle("ReStyle Warning")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.setDefaultButton(QMessageBox.Ok)
-            msg.exec_()
+            msg.exec()
             return
 
         settings = QSettings('Ac7Renamer', 'Recently Used Files')

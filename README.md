@@ -3,9 +3,9 @@ Building standalone executable on windows OS
 - Install python 3.7.4 (or newer)
   - visit https://python.org and download and install python 3.7
 
-- Install pyqt5 and pyinstaller (change paths as needed for your system) on a command line
+- Install pyside6 and pyinstaller (change paths as needed for your system) on a command line
   - cd c:\folder\where\python\is\installed\Scripts
-  - pip3 install PyQt5
+  - pip3 install PySide6
   - pip3 install PyInstaller
 
 - Install git
@@ -36,7 +36,7 @@ Building standalone executable on Linux OS
 ------------------------------------------
 - Prerequisites:
   -Install python 3.7
-  - Install PyQt5 and PyInstaller (either using pip or using your distribution's package manager)
+  - Install PySide6 and PyInstaller (either using pip or using your distribution's package manager)
   - Install git
 
 - Download ac7parser

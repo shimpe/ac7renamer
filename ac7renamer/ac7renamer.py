@@ -1,6 +1,6 @@
 import sys
 import ac7renamer.myrenamerdlg
-from PyQt5 import QtWidgets
+from PySide6 import QtWidgets
 from pathlib import Path
 
 
@@ -13,7 +13,7 @@ def main():
     ui.setup_slots(home)
     ac7_renamer.show()
     ui.flash_splash()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
 
 
 if __name__ == "__main__":

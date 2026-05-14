@@ -1,18 +1,20 @@
-from PyQt5.QtCore import QObject
-from PyQt5.QtCore import QSettings
-from PyQt5.QtCore import QRegExp
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QRegExpValidator
+from PySide6.QtCore import QObject
+from PySide6.QtCore import QSettings
+from PySide6.QtCore import QRegularExpression
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QRegularExpressionValidator
 from pathlib import Path
-from PyQt5.QtWidgets import QFileDialog
-from PyQt5.QtWidgets import QMessageBox
+from PySide6.QtWidgets import QFileDialog
+from PySide6.QtWidgets import QMessageBox
 from ac7parser.Ac7File import Ac7File
 
 
 class SingleFileTab(QObject):
     def __init__(self, parent):
+        # Store as self.dlg, not self.parent — assigning self.parent would
+        # shadow QObject.parent() and break PySide6 signal delivery.
         super().__init__()
-        self.parent = parent
+        self.dlg = parent
         self.ac7file = Ac7File()
         self.file_loaded = False
         self.filename = ""
@@ -58,27 +60,27 @@ class SingleFileTab(QObject):
         return self.lut_in_file_order.index(txt)
 
     def setup_slots(self, homefolder):
-        self.parent.pushButton.clicked.connect(self.load_ac7_file_clicked)
-        self.parent.saveButton.clicked.connect(self.save_clicked)
+        self.dlg.pushButton.clicked.connect(self.load_ac7_file_clicked)
+        self.dlg.saveButton.clicked.connect(self.save_clicked)
         self.home_folder = homefolder
-        reg_ex = QRegExp(r"[A-Za-z0-9 #\(\)\.\*\+\-,\$!\"\\':;/<=&>\?@\[\]\^_{}~\|]{1,12}")
-        input_validator = QRegExpValidator(reg_ex, self.parent.desiredDisplayName)
-        self.parent.desiredDisplayName.setValidator(input_validator)
-        self.parent.Buttons.rejected.connect(self.reject)
+        reg_ex = QRegularExpression(r"[A-Za-z0-9 #\(\)\.\*\+\-,\$!\"\\':;/<=&>\?@\[\]\^_{}~\|]{1,12}")
+        input_validator = QRegularExpressionValidator(reg_ex, self.dlg.desiredDisplayName)
+        self.dlg.desiredDisplayName.setValidator(input_validator)
+        self.dlg.Buttons.rejected.connect(self.reject)
         self.combos_in_file_order = [
-            self.parent.desEl1,
-            self.parent.desEl2,
-            self.parent.desEl3,
-            self.parent.desEl4,
-            self.parent.desEl5,
-            self.parent.desEl6,
-            self.parent.desEl7,
-            self.parent.desEl8,
-            self.parent.desEl9,
-            self.parent.desEl10,
-            self.parent.desEl11,
-            self.parent.desEl12]
-        self.parent.pushButton.setFocus()
+            self.dlg.desEl1,
+            self.dlg.desEl2,
+            self.dlg.desEl3,
+            self.dlg.desEl4,
+            self.dlg.desEl5,
+            self.dlg.desEl6,
+            self.dlg.desEl7,
+            self.dlg.desEl8,
+            self.dlg.desEl9,
+            self.dlg.desEl10,
+            self.dlg.desEl11,
+            self.dlg.desEl12]
+        self.dlg.pushButton.setFocus()
 
     def load_ac7_file_clicked(self):
         settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -101,11 +103,11 @@ class SingleFileTab(QObject):
                     binzero = stylename.find("\x00")
                     if binzero >= 0:
                         stylename = stylename[:binzero]
-                    self.parent.currentDisplayName.setText(stylename)
-                    self.parent.desiredDisplayName.setText("")
+                    self.dlg.currentDisplayName.setText(stylename)
+                    self.dlg.desiredDisplayName.setText("")
                     self.file_loaded = True
                     self.filename = Path(fname).name
-                    self.parent.desiredDisplayName.setFocus()
+                    self.dlg.desiredDisplayName.setFocus()
                     self.set_number_of_elements(len(self.ac7file.properties['common_parameters'].properties['overall_parameters']['elements']))
                 except Exception as e:
                     msg = QMessageBox()
@@ -119,7 +121,7 @@ class SingleFileTab(QObject):
                     msg.setStandardButtons(QMessageBox.Ok)
                     msg.setDetailedText(e.__repr__())
                     msg.setDefaultButton(QMessageBox.Ok)
-                    msg.exec_()
+                    msg.exec()
 
     def save_clicked(self):
         self.ordering = []
@@ -127,7 +129,7 @@ class SingleFileTab(QObject):
             self.ordering.append(self.ui_order_to_file_order(self.combos_in_file_order[index_in_file_order].currentIndex()))
 
         if self.file_loaded:
-            txt = self.parent.desiredDisplayName.text()
+            txt = self.dlg.desiredDisplayName.text()
             if not txt:
                 msg = QMessageBox()
                 msg.setIcon(QMessageBox.Warning)
@@ -136,7 +138,7 @@ class SingleFileTab(QObject):
                 msg.setWindowTitle("ReStyle Warning")
                 msg.setStandardButtons(QMessageBox.Ok)
                 msg.setDefaultButton(QMessageBox.Ok)
-                msg.exec_()
+                msg.exec()
 
             else:
                 settings = QSettings('Ac7Renamer', 'Recently Used Files')
@@ -163,8 +165,8 @@ class SingleFileTab(QObject):
                         msg.setWindowTitle("ReStyle Information")
                         msg.setStandardButtons(QMessageBox.Ok)
                         msg.setDefaultButton(QMessageBox.Ok)
-                        msg.exec_()
-                        self.parent.pushButton.setFocus()
+                        msg.exec()
+                        self.dlg.pushButton.setFocus()
                     except Exception as e:
                         msg = QMessageBox()
                         msg.setIcon(QMessageBox.Warning)
@@ -177,7 +179,7 @@ class SingleFileTab(QObject):
                         msg.setStandardButtons(QMessageBox.Ok)
                         msg.setDetailedText(e.__repr__())
                         msg.setDefaultButton(QMessageBox.Ok)
-                        msg.exec_()
+                        msg.exec()
 
         else:
             msg = QMessageBox()
@@ -187,7 +189,7 @@ class SingleFileTab(QObject):
             msg.setWindowTitle("ReStyle Warning")
             msg.setStandardButtons(QMessageBox.Ok)
             msg.setDefaultButton(QMessageBox.Ok)
-            msg.exec_()
+            msg.exec()
 
     def reject(self):
         pass

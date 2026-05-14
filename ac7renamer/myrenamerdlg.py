@@ -1,9 +1,9 @@
 import ac7renamer.ac7renamerdlg
-from PyQt5.QtWidgets import QMessageBox, QSplashScreen
+from PySide6.QtWidgets import QMessageBox, QSplashScreen
 from ac7renamer.singlefiletab import SingleFileTab
 from ac7renamer.multifiletab import MultiFileTab
-from PyQt5.QtCore import QSettings, Qt, QTimer
-from PyQt5.QtGui import QPixmap
+from PySide6.QtCore import QSettings, Qt, QTimer
+from PySide6.QtGui import QPixmap
 
 
 class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
@@ -47,4 +47,4 @@ class MyRenamerDlg(ac7renamer.ac7renamerdlg.Ui_Ac7Renamer):
         msg.setStandardButtons(QMessageBox.Ok)
         msg.setDefaultButton(QMessageBox.Ok)
         msg.setIconPixmap(QPixmap(":/icons/images/restyle_logo.png").scaledToWidth(300))
-        msg.exec_()
+        msg.exec()

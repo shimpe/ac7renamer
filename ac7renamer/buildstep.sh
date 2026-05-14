@@ -1,3 +1,2 @@
-pyuic5 --from-imports ac7renamerdlg.ui -o ac7renamerdlg.py
-pyrcc5 imageresources.qrc -o imageresources_rc.py
-
+pyside6-uic --from-imports ac7renamerdlg.ui -o ac7renamerdlg.py
+pyside6-rcc imageresources.qrc -o imageresources_rc.py

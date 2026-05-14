@@ -67,9 +67,9 @@ Expected: prints a Qt version like `6.9.x` and exits cleanly.
 
 Run:
 ```
-.venv\Scripts\python.exe -m PySide6.scripts.pyside_tool uic ac7renamer\ac7renamerdlg.ui -o ac7renamer\ac7renamerdlg.py
+.venv\Scripts\pyside6-uic.exe --from-imports ac7renamer\ac7renamerdlg.ui -o ac7renamer\ac7renamerdlg.py
 ```
-Expected: command exits cleanly, no output. `ac7renamer\ac7renamerdlg.py` is rewritten.
+Expected: command exits cleanly (exit code 0), no output. `ac7renamer\ac7renamerdlg.py` is rewritten. The `--from-imports` flag is critical — without it, the generated file uses `import imageresources_rc` (bare) which fails when the file is loaded as a package module. With it, the generated import is `from . import imageresources_rc`.
 
 - [ ] **Step 2: Verify the regenerated file imports from PySide6**
 
@@ -98,9 +98,9 @@ Expected: at least one match (e.g. `from . import imageresources_rc`). The resou
 
 Run:
 ```
-.venv\Scripts\python.exe -m PySide6.scripts.pyside_tool rcc ac7renamer\imageresources.qrc -o ac7renamer\imageresources_rc.py
+.venv\Scripts\pyside6-rcc.exe ac7renamer\imageresources.qrc -o ac7renamer\imageresources_rc.py
 ```
-Expected: command exits cleanly. `ac7renamer\imageresources_rc.py` is rewritten in PySide6 format.
+Expected: command exits cleanly (exit code 0). `ac7renamer\imageresources_rc.py` is rewritten in PySide6 format.
 
 - [ ] **Step 2: Verify it imports from PySide6**
 
@@ -403,7 +403,7 @@ These changes are temporary — Phase 2 deletes `buildstep.sh` and `setup.py` an
 Replace its contents with:
 
 ```sh
-pyside6-uic ac7renamerdlg.ui -o ac7renamerdlg.py
+pyside6-uic --from-imports ac7renamerdlg.ui -o ac7renamerdlg.py
 pyside6-rcc imageresources.qrc -o imageresources_rc.py
 ```
 
@@ -905,8 +905,10 @@ Expected: no matches.
 
 Run:
 ```
-.venv\Scripts\python.exe -m PySide6.scripts.pyside_tool uic ac7renamer\ac7renamerdlg.ui -o ac7renamer\ac7renamerdlg.py
+.venv\Scripts\pyside6-uic.exe --from-imports ac7renamer\ac7renamerdlg.ui -o ac7renamer\ac7renamerdlg.py
 ```
+
+Note: `--from-imports` is preserved here for consistency with Task 2, even though the .ui file no longer references the .qrc — it's harmless when there's no resource import to emit.
 
 - [ ] **Step 2: Verify the resource import is gone**
 
@@ -1083,8 +1085,10 @@ class SingleFileTab(QObject):
     ]
 
     def __init__(self, parent) -> None:
+        # Stored as self.dlg, not self.parent — assigning self.parent would
+        # shadow QObject.parent() and break PySide6 signal delivery.
         super().__init__()
-        self.parent = parent
+        self.dlg = parent
         self.ac7file = Ac7File()
         self.file_loaded = False
         self.filename = ""
@@ -1100,18 +1104,18 @@ class SingleFileTab(QObject):
         return self.lut_in_file_order.index(self.lut_in_ui_order[ui_order_index])
 
     def setup_slots(self, homefolder: str) -> None:
-        self.parent.pushButton.clicked.connect(self.load_ac7_file_clicked)
-        self.parent.saveButton.clicked.connect(self.save_clicked)
+        self.dlg.pushButton.clicked.connect(self.load_ac7_file_clicked)
+        self.dlg.saveButton.clicked.connect(self.save_clicked)
         self.home_folder = homefolder
         reg_ex = QRegularExpression(
             r"[A-Za-z0-9 #\(\)\.\*\+\-,\$!\"\\':;/<=&>\?@\[\]\^_{}~\|]{1,12}"
         )
-        input_validator = QRegularExpressionValidator(reg_ex, self.parent.desiredDisplayName)
-        self.parent.desiredDisplayName.setValidator(input_validator)
+        input_validator = QRegularExpressionValidator(reg_ex, self.dlg.desiredDisplayName)
+        self.dlg.desiredDisplayName.setValidator(input_validator)
         self.combos_in_file_order = [
-            getattr(self.parent, f"desEl{i + 1}") for i in range(12)
+            getattr(self.dlg, f"desEl{i + 1}") for i in range(12)
         ]
-        self.parent.pushButton.setFocus()
+        self.dlg.pushButton.setFocus()
 
     def load_ac7_file_clicked(self) -> None:
         settings = QSettings("Ac7Renamer", "Recently Used Files")
@@ -1133,11 +1137,11 @@ class SingleFileTab(QObject):
             binzero = stylename.find("\x00")
             if binzero >= 0:
                 stylename = stylename[:binzero]
-            self.parent.currentDisplayName.setText(stylename)
-            self.parent.desiredDisplayName.setText("")
+            self.dlg.currentDisplayName.setText(stylename)
+            self.dlg.desiredDisplayName.setText("")
             self.file_loaded = True
             self.filename = Path(fname).name
-            self.parent.desiredDisplayName.setFocus()
+            self.dlg.desiredDisplayName.setFocus()
             self.set_number_of_elements(
                 len(self.ac7file.properties["common_parameters"].properties["overall_parameters"]["elements"])
             )
@@ -1172,7 +1176,7 @@ class SingleFileTab(QObject):
             msg.exec()
             return
 
-        txt = self.parent.desiredDisplayName.text()
+        txt = self.dlg.desiredDisplayName.text()
         if not txt:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Icon.Warning)
@@ -1210,7 +1214,7 @@ class SingleFileTab(QObject):
             msg.setStandardButtons(QMessageBox.StandardButton.Ok)
             msg.setDefaultButton(QMessageBox.StandardButton.Ok)
             msg.exec()
-            self.parent.pushButton.setFocus()
+            self.dlg.pushButton.setFocus()
         except Exception as e:
             msg = QMessageBox()
             msg.setIcon(QMessageBox.Icon.Warning)
@@ -1238,7 +1242,7 @@ class SingleFileTab(QObject):
 
 Notes on the diff vs Phase 1:
 - LUTs are now class attributes (still mutable lists, but they don't need to be re-bound per instance).
-- The 12 hardcoded `self.parent.desEl{N}` references collapse into a `getattr` loop.
+- The 12 hardcoded `self.dlg.desEl{N}` references collapse into a `getattr` loop.
 - No-op `def reject(self): pass` and its `Buttons.rejected.connect(self.reject)` wiring removed. (The generated UI already wires `Buttons.rejected` → `Ac7Renamer.reject` on the dialog.)
 - All enums tightened to scoped Qt6 forms (`QMessageBox.Icon.Warning`, `Qt.TextFormat.RichText`, `QFileDialog.Option.DontUseNativeDialog`, etc.).
 - Early-return guards replace nested `if/else` in `save_clicked` and `load_ac7_file_clicked`.
@@ -1309,8 +1313,9 @@ from ac7renamer.columns import COL_NEWFILENAME, COL_NEWSTYLENAME
 
 class MultiFileModel(QStandardItemModel):
     def __init__(self, rows: int, cols: int, parent) -> None:
+        # Do not store parent as self.parent — that shadows QObject.parent()
+        # and breaks PySide6 signal delivery.
         super().__init__(rows, cols, parent)
-        self.parent = parent
         self.itemChanged.connect(self.on_change)
 
     def sanitize_filename(self, filename: str) -> str:
@@ -1376,7 +1381,10 @@ Run after editing ac7renamer/ac7renamerdlg.ui in Qt Designer:
     python build.py
 
 Works on Windows and Linux from any venv that has PySide6 installed.
+The --from-imports flag tells uic to emit package-relative imports
+for the .qrc-generated resource module (when one is present).
 """
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -1385,12 +1393,15 @@ PKG = Path(__file__).parent / "ac7renamer"
 
 
 def main() -> None:
+    uic = shutil.which("pyside6-uic")
+    if uic is None:
+        sys.exit(
+            "pyside6-uic not found on PATH. Activate the venv first, or install PySide6."
+        )
     subprocess.run(
         [
-            sys.executable,
-            "-m",
-            "PySide6.scripts.pyside_tool",
-            "uic",
+            uic,
+            "--from-imports",
             str(PKG / "ac7renamerdlg.ui"),
             "-o",
             str(PKG / "ac7renamerdlg.py"),

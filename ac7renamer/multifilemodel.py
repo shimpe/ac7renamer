@@ -1,4 +1,4 @@
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
+from PySide6.QtGui import QStandardItemModel, QStandardItem
 from ac7parser.Ac7CommonParameters import Ac7CommonParameters
 from ac7renamer.columns import *
 import re
@@ -6,8 +6,9 @@ import re
 
 class MultiFileModel(QStandardItemModel):
     def __init__(self, rows, cols, parent):
+        # Do not store parent as self.parent — that shadows QObject.parent()
+        # and breaks PySide6 signal delivery (TypeError: 'X' object is not callable).
         super().__init__(rows, cols, parent)
-        self.parent = parent
         self.itemChanged.connect(self.on_change)
 
     def sanitize_filename(self, filename):
